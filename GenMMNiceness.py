@@ -3,16 +3,20 @@
 import argparse
 import base64
 import subprocess
-import urllib2
 import random
 import string
 from itertools import *
+
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib2 import urlopen
 
 tmpNicenessFile = 'tmpshell.txt'
 outputFile = 'mmniceness.cs'
 
 def grabCSTemplate():
-    response = urllib2.urlopen('https://raw.githubusercontent.com/fullmetalcache/CsharpMMNiceness/master/niceness_template.cs')
+    response = urlopen('https://raw.githubusercontent.com/fullmetalcache/CsharpMMNiceness/master/niceness_template.cs')
     script = response.read()
 
     return script
